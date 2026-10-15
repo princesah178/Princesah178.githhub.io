@@ -1,1 +1,740 @@
-Hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prince Sah </title>
+
+    <style>
+        /* ===== GENERAL SETTINGS ===== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --background: #070d1b;
+            --card: #101a2c;
+            --cyan: #72e3ff;
+            --purple: #d59bff;
+            --text: #f5f7ff;
+            --muted: #aab4cb;
+            --border: rgba(114, 227, 255, 0.2);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* ===== HEADER ===== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(7, 13, 27, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(15px);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            padding: 10px 15px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(114, 227, 255, 0.12);
+            color: var(--cyan);
+        }
+
+        /* ===== COMMON SECTIONS ===== */
+
+        section {
+            padding: 100px 0;
+            scroll-margin-top: 90px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(30px, 5vw, 45px);
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: var(--cyan);
+        }
+
+        .section-description {
+            text-align: center;
+            color: var(--muted);
+            max-width: 650px;
+            margin: 0 auto 45px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                var(--cyan),
+                var(--purple)
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ===== HOME SECTION ===== */
+
+        #home {
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            padding: 65px 0 90px;
+            overflow: hidden;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .badge {
+            display: inline-block;
+            color: var(--cyan);
+            border: 1px solid var(--border);
+            background: rgba(114, 227, 255, 0.06);
+            padding: 9px 20px;
+            border-radius: 50px;
+            letter-spacing: 2px;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 70px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: clamp(22px, 3vw, 30px);
+            margin-bottom: 20px;
+            color: var(--muted);
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 550px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 23px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                100deg,
+                var(--cyan),
+                #8ca8ff
+            );
+            color: #07101e;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--cyan);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ===== PROFILE PHOTO ===== */
+
+        .profile-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-ring {
+            width: min(340px, 75vw);
+            aspect-ratio: 1;
+            padding: 6px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                var(--cyan),
+                #9a8aff,
+                var(--purple)
+            );
+            box-shadow: 0 0 45px rgba(114, 227, 255, 0.15);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .photo-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 5px solid var(--background);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* ===== ABOUT SECTION ===== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyan);
+        }
+
+        .card h3 {
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--muted);
+        }
+
+        .about-highlight {
+            color: var(--cyan);
+            font-weight: bold;
+        }
+
+        /* ===== INTERESTS SECTION ===== */
+
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .interest-card {
+            background: var(--card);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-8px);
+            background: #14233a;
+        }
+
+        .interest-icon {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .interest-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .interest-card p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* ===== MY DETAILS SECTION ===== */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .detail-item {
+            padding: 20px;
+            border-radius: 15px;
+            background: var(--card);
+            border: 1px solid var(--border);
+        }
+
+        .detail-item small {
+            display: block;
+            color: var(--cyan);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .detail-item p {
+            overflow-wrap: anywhere;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+
+        .contact-wrapper {
+            max-width: 750px;
+            margin: auto;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 35px;
+        }
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .contact-link {
+            display: block;
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: 0.3s;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-link:hover {
+            border-color: var(--cyan);
+            background: rgba(114, 227, 255, 0.06);
+        }
+
+        .contact-link strong {
+            display: block;
+            color: var(--cyan);
+            margin-bottom: 5px;
+        }
+
+        .contact-link span {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #080f20;
+            color: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--cyan);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .contact-form button {
+            border: none;
+            font-size: 15px;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        footer span {
+            color: var(--cyan);
+        }
+
+        /* ===== MOBILE RESPONSIVE DESIGN ===== */
+
+        @media (max-width: 800px) {
+            .navbar {
+                justify-content: center;
+            }
+
+            .logo {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links {
+                width: 100%;
+            }
+
+            .nav-links a {
+                padding: 8px 12px;
+                font-size: 15px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .profile-area {
+                grid-row: 1;
+                margin-bottom: 15px;
+            }
+
+            .photo-ring {
+                width: min(280px, 70vw);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .interest-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            section {
+                padding: 75px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 91%;
+            }
+
+            .nav-links {
+                gap: 3px;
+            }
+
+            .nav-links a {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+
+            .interest-grid,
+            .details-grid,
+            .contact-links {
+                grid-template-columns: 1fr;
+            }
+
+            .card,
+            .contact-wrapper {
+                padding: 22px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .badge {
+                font-size: 11px;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* ===== POLISHED ANIMATIONS ===== */
+        html { scroll-behavior: smooth; }
+        body { overflow-x: hidden; }
+        header { transition: box-shadow .3s ease, background .3s ease; }
+        header.scrolled { box-shadow: 0 10px 35px rgba(0,0,0,.28); }
+        .logo { transition: letter-spacing .3s ease, transform .3s ease; }
+        .logo:hover { letter-spacing: 2px; transform: translateY(-1px); }
+        .nav-links a { position: relative; }
+        .nav-links a::after {
+            content: ""; position: absolute; left: 14px; right: 14px; bottom: 5px;
+            height: 2px; background: var(--cyan); transform: scaleX(0);
+            transform-origin: center; transition: transform .25s ease;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+        .hero-content { animation: riseIn .8s ease both; }
+        .profile-area { animation: fadeScale .9s .12s ease both; }
+        .photo-ring { position: relative; isolation: isolate; }
+        .photo-ring::before {
+            content: ""; position: absolute; inset: -12px; border-radius: 50%;
+            border: 1px solid rgba(114,227,255,.35);
+            animation: orbitGlow 7s linear infinite; z-index: -1;
+        }
+        .photo-ring.photo-placeholder {
+            display: grid; place-items: center;
+            background: linear-gradient(135deg, #17243a, #202044);
+        }
+        .photo-ring.photo-placeholder::after {
+            content: "PS"; font-size: clamp(64px, 10vw, 100px); font-weight: 900;
+            letter-spacing: 5px; color: var(--cyan);
+            text-shadow: 0 0 35px rgba(114,227,255,.25);
+        }
+        .photo-ring img { display: block; }
+        .card, .interest-card, .detail-item, .contact-link, .contact-wrapper {
+            will-change: transform; transition: transform .28s ease, border-color .28s ease,
+            box-shadow .28s ease, background .28s ease;
+        }
+        .card:hover, .interest-card:hover, .detail-item:hover, .contact-link:hover {
+            box-shadow: 0 14px 35px rgba(0,0,0,.18);
+        }
+        .btn { position: relative; overflow: hidden; }
+        .btn::before {
+            content: ""; position: absolute; top: 0; left: -130%; width: 80%; height: 100%;
+            transform: skewX(-22deg); background: rgba(255,255,255,.25);
+            transition: left .55s ease;
+        }
+        .btn:hover::before { left: 140%; }
+        .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @keyframes riseIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeScale { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: scale(1); } }
+        @keyframes orbitGlow { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+            .reveal { opacity: 1; transform: none; }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER AND NAVIGATION -->
+
+    <header>
+        <nav class="navbar">
+
+           <a href="#home" class="logo">
+                PRINCE<span>SAH</span>178.COM
+            </a>
+
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#interests">Interests</a>
+                <a href="#details">My Details</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- 1. HOME -->
+
+        <section id="home">
+            <div class="container hero">
+
+                <div class="hero-content">
+
+                    <div class="badge">
+                        ▪ PERSONAL PORTFOLIO
+                    </div>
+
+                    <h1>
+                        Hello, I'm
+                        <span class="gradient-text">Prince Sah</span>
+                    </h1>
+
+                    <h2>
+                        Student & Future Developer
+                    </h2>
+
+                    <p>
+                        Welcome to my personal website! I am interested
+                        in technology, HTML, CSS, Python, artificial
+                        intelligence, and creating innovative digital
+                        projects. Explore my website to learn more about me.
+                    </p>
+
+                    <div class="buttons">
+                        <a href="#about" class="btn btn-primary">
+                            About Me →
+                        </a>
+
+                        <a href="#contact" class="btn btn-secondary">
+                            Contact Me
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="profile-area">
+                    <div class="photo-ring">
+                        <img src="pp1.jpg" alt="Prince Sah profile photo"
+                             onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder');">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT -->
+
+        <section id="about">
+            <div class="container">
+
+                <h2 class="section-title">
+                    About <span>Me</span>
+                </h2>
+
+                <p class="section-description">
+                    A little introduction about who I am and what I want
+                    to achieve.
+                </p>
+
+                <div class="about-grid">
+
+                    <div class="card">
+                        <h3>👋 Who Am I?</h3>
+
+                        <p>
+                            Hello! My name is <span class="about-highlight">
+                            Prince Sah</span>. I am interested in learning
+                            about computers, programming, website development,
+                            and modern technology.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🚀 My Goals</h3>
+
+                        <p>
+                            My goal is to improve my programming skills,
+                            build useful websites and applications, and
+                            explore artificial intelligence and software
+                            development in the future.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>💻 My Skills</h3>
+
+                        <p>
+                            I am learning HTML and exploring web design.
+                            I also want to develop my knowledge of CSS,
+                            JavaScript, Python, and AI technologies.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3>🌟 My Vision</h3>
+
+                        <p>
+                            I want to turn creative ideas into practical
+                            digital projects and continue learning about
+                            the technology that shapes our future.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. INTERESTS -->
+
+        <section id="interests">
+            <div class="container">
+
+                <h2 class="section-title">
+                    My <span>Interests</span>
+                </h2>
+
+                <p class="section-description">
+                    Technologies and creative activities I enjoy exploring.
+                </p>
+
+                <div class="interest-grid">
+
+                    <div cl
